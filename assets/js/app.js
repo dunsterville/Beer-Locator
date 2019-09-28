@@ -74,7 +74,7 @@ const getCity = (latitude, longitude) => {
   .catch(err => console.log(err))
 }
 
-const 
+
 
 
 /***************
