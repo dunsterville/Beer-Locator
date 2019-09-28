@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Beer Locator</title>
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+
+  <!-- Materialize CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="text/javascript">
+  let cityname //pass a city name into this var later.
+    fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityname}`)
+    .then(r => r.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(err => {console.log(err)})
+  </script>
+</body>
