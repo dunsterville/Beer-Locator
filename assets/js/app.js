@@ -14,15 +14,26 @@ let userLatitude,
 * Fetch Requests
 ***************/
 
-
+const getBreweries = (cityname) => {
   fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityname}`)
   .then(r => r.json())
   .then(data => {
     console.log(data)
+    // Call function to update breweries display
   })
-  .catch(err => {console.log(err)})
+  .catch(err => console.log(err))
+}
 
-
+const getCity = (latitude, longitude) => {
+  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d62fec397ede46c28c554363b73c4563`)
+  .then(r => r.json())
+  .then(data => {
+    console.log (data.results[0].components.city)
+    // Get Breweries
+    getBreweries(data.results[0].components.city)
+  })
+  .catch(err => console.log(err))
+}
 
 
 
@@ -36,7 +47,7 @@ const getGeoLocation = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(grabLocation, locationError)
   } else { 
-    // Error Handler
+    // Geolocation not supported
     errorMessage = 'Geolocation is not supported by this browser.'
   }
 }
@@ -45,7 +56,7 @@ const grabLocation = (position) => {
   // Grab position
   userLatitude = position.coords.latitude
   userLongitude = position.coords.longitude
-  console.log(userLatitude, userLongitude)
+  getCity(userLatitude, userLongitude)
 }
 
 const locationError = (error) => {
@@ -67,3 +78,4 @@ const locationError = (error) => {
 }
 
 getGeoLocation()
+
