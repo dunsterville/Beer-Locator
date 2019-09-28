@@ -1,0 +1,11 @@
+
+/*beerUs images */
+#beerImg {
+  width: 100%;
+  height: 200px;
+}
+.small.card{
+  width: 200px;
+  height: 400px;
+  text-align: center;
+}

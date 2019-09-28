@@ -17,51 +17,38 @@ let userLatitude,
 const getBreweries = (cityname) => {
   fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityname}`)
   .then(r => r.json())
-  .then(data => {
-    console.log(data)
-    //createCard(data,url)
-    // Call function to update breweries display
-    data.forEach(element => {
+  .then(data => { 
+    // For each item in data array
+    data.forEach((element, i) => {
       let imageURL
-
+      // set breweriesData at data[i]
+      let breweriesData = data[i]
       // If Website URL exists
       if (element.website_url) {
         // Get openGraph info
         fetch(`http://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
         .then(r => r.json())
         .then(data => {
+          // Set imageURL
           imageURL = data.openGraph.image.url
-          console.log(data, imageURL)
+          // If image url doesn't exist
           if (!imageURL) {
-            fetch('https://api.unsplash.com/search/photos?query=beer&per_page=1', {
-              headers: {
-                Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
-              }
-            })
-            .then(r => r.json())
-            .then(data => {
-              console.log(data)
-              imageURL = data.results[0].urls.full
-            })
-          } 
+            // Get an unsplash image
+            getUnsplash(breweriesData)
+          } else {
+            createCard(breweriesData, imageURL)
+          }
         })
         .catch(err => console.log(err))
       } else {
-        fetch('https://api.unsplash.com/search/photos?query=beer&per_page=1', {
-          headers: {
-            Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
-          }
-        })
-        .then(r => r.json())
-        .then(data => {
-          console.log(data)
-          imageURL = data.results[0].urls.full
-        })
+        // Get an unsplash image
+        getUnsplash(breweriesData)
       }
     })
   })
   .catch(err => console.log(err))
 }
+
 
 const getCity = (latitude, longitude) => {
   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d62fec397ede46c28c554363b73c4563`)
@@ -75,12 +62,44 @@ const getCity = (latitude, longitude) => {
 }
 
 
+const getUnsplash = (breweriesData) => {
+  fetch('https://api.unsplash.com/search/photos?query=beer&per_page=1', {
+    headers: {
+      Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
+    }
+  })
+  .then(r => r.json())
+  .then(data => {
+    console.log(data)
+    imageURL = data.results[0].urls.full
+    createCard(breweriesData, imageURL)
+  })
+}
 
 
 /***************
 * Functions
 ***************/
 
+const createCard = (data, url) => {
+  let newcard = document.createElement("div")
+  newcard.innerHTML = `
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-image">
+        <img src="${url}" class="responsive-img">
+      </div>
+      <div class="card-content">
+        <span class="card-title">${data.name}</span>
+        <p>Address: ${data.street}</p>
+        <p>Phone: ${data.phone}</p>
+        <a href="${data.website_url}">${data.website_url}</a>
+      </div>
+    </div>
+  </div>
+  ` //Need to check parameters later
+  document.getElementById("cards").append(newcard)
+}
 
 const getGeoLocation = () => {
   if (navigator.geolocation) {
