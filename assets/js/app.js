@@ -19,6 +19,7 @@ const getBreweries = (cityname) => {
   .then(r => r.json())
   .then(data => {
     console.log(data)
+    createCard(data, url)
     // Call function to update breweries display
   })
   .catch(err => console.log(err))
@@ -42,6 +43,25 @@ const getCity = (latitude, longitude) => {
 * Functions
 ***************/
 
+const createCard = (data, url) => {
+  let newcard = document.getElementById('cards').createElement("div")
+  newcard.innerHTML = `
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-image">
+        <img src="${url}" class="responsive-img">
+      </div>
+      <div class="card-content">
+        <span class="card-title">${data.name}</span>
+        <p>Address: ${data.street}</p>
+        <p>Phone: ${data.phone}</p>
+        <p>Website: ${data.website_url}</p>
+      </div>
+    </div>
+  </div>
+  ` //Need to check parameters later
+  document.getElementById("cards").append(newcard)
+}
 
 const getGeoLocation = () => {
   if (navigator.geolocation) {
