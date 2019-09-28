@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-//for Materialize's responsive navbar
-$(document).ready(function(){ //When the document's loaded, it'll be ready for menu icon click
-    $('.sidenav').sidenav()
-})
-
-//OpenBrewery fetch request
-let cityname //pass a city name into this var later?
-=======
 /***************
 * Variables
 ***************/
@@ -24,7 +15,6 @@ let userLatitude,
 ***************/
 
 const getBreweries = (cityname) => {
->>>>>>> ae132de70d93a348a3b9af6432aedb9a6b48999a
   fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityname}`)
   .then(r => r.json())
   .then(data => {
@@ -43,8 +33,6 @@ const getCity = (latitude, longitude) => {
     getBreweries(data.results[0].components.city)
   })
   .catch(err => console.log(err))
-<<<<<<< HEAD
-=======
 }
 
 
@@ -89,6 +77,11 @@ const locationError = (error) => {
   console.log(errorMessage)
 }
 
+//navbar functionality
+$(document).ready(function(){ //When the document's loaded, it'll be ready for menu icon click
+    $('.sidenav').sidenav()
+})
+
+
 getGeoLocation()
 
->>>>>>> ae132de70d93a348a3b9af6432aedb9a6b48999a
