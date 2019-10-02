@@ -26,7 +26,7 @@ const getBreweries = (cityname) => {
       // If Website URL exists
       if (element.website_url) {
         // Get openGraph info
-        fetch(`http://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
+        fetch(`https://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
         .then(r => r.json())
         .then(data => {
           // Set imageURL
