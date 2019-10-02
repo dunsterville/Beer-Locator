@@ -25,6 +25,11 @@
   color: white;
 }
 
+/*About Paralax */
+    .parallax-container {
+      height: 375px;
+    }
+    
 .joke {
   text-align: center
 }
@@ -38,4 +43,8 @@
   text-align: center;
   color:  red;
 
+}
+/* Footer Padding fix */
+.page-footer {
+  padding-top: 0px;
 }
