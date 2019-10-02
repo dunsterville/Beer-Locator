@@ -1,5 +1,5 @@
 
-/*beerUs images */
+/*beerUs.html style */
 #beerImg {
   width: 100%;
   height: 200px;
@@ -8,4 +8,9 @@
   width: 200px;
   height: 400px;
   text-align: center;
+}
+
+.intro {
+  font-weight: bold;
+  color: #388E3C
 }
