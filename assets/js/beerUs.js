@@ -5,11 +5,14 @@
 const swap = _ => {
   document.addEventListener('click', e => {
     if (e.target.className === 'responsive-img') {
-
+      const originalPix = e.target.src
       fetch('http://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
         .then(r => r.json())
         .then(gifs => {
           document.getElementById(e.target.id).src = gifs.data.images.original.url
+          setTimeout(function () {
+            document.getElementById(e.target.id).src = originalPix
+          }, 3000)
         })
         .catch(e => console.log(e))
     }
