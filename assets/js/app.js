@@ -26,20 +26,21 @@ const getBreweries = (cityname) => {
       // If Website URL exists
       if (element.website_url) {
         // Get openGraph info
-        fetch(`https://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
-        .then(r => r.json())
-        .then(data => {
-          // Set imageURL
-          imageURL = data.openGraph.image.url
-          // If image url doesn't exist
-          if (!imageURL) {
-            // Get an unsplash image
-            getUnsplash(breweriesData)
-          } else {
-            createCard(breweriesData, imageURL)
-          }
-        })
-        .catch(err => console.log(err))
+        // fetch(`https://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
+        // .then(r => r.json())
+        // .then(data => {
+        //   // Set imageURL
+        //   imageURL = data.openGraph.image.url
+        //   // If image url doesn't exist
+        //   if (!imageURL) {
+        //     // Get an unsplash image
+        //     getUnsplash(breweriesData)
+        //   } else {
+        //     createCard(breweriesData, imageURL)
+        //   }
+        // })
+        // .catch(err => console.log(err))
+        getUnsplash(breweriesData)
       } else {
         // Get an unsplash image
         getUnsplash(breweriesData)
@@ -63,7 +64,7 @@ const getCity = (latitude, longitude) => {
 
 
 const getUnsplash = (breweriesData) => {
-  fetch('https://api.unsplash.com/search/photos?query=beer&per_page=1', {
+  fetch('https://api.unsplash.com/photos/random?query=beer', {
     headers: {
       Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
     }
@@ -71,7 +72,7 @@ const getUnsplash = (breweriesData) => {
   .then(r => r.json())
   .then(data => {
     console.log(data)
-    imageURL = data.results[0].urls.full
+    imageURL = data.urls.small
     createCard(breweriesData, imageURL)
   })
 }
@@ -145,6 +146,25 @@ const locationError = (error) => {
 $(document).ready(function(){ //When the document's loaded, it'll be ready for menu icon click
     $('.sidenav').sidenav()
 })
+
+
+/***************
+* Event Listener
+***************/
+
+document.getElementById('searchBreweries').addEventListener('submit', e => {
+  e.preventDefault()
+  getBreweries(document.getElementById('search').value)
+})
+
+document.getElementById('search').addEventListener('click', () => {
+  document.getElementById('search').select()
+})
+
+document.getElementById('clearSearch').addEventListener('click', () => {
+  document.getElementById('search').value = ''
+})
+
 
 
 getGeoLocation()
