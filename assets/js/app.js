@@ -64,17 +64,18 @@ const getCity = (latitude, longitude) => {
 
 
 const getUnsplash = (breweriesData) => {
-  fetch('https://api.unsplash.com/photos/random?query=beer', {
-    headers: {
-      Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
-    }
-  })
-  .then(r => r.json())
-  .then(data => {
-    console.log(data)
-    imageURL = data.urls.small
-    createCard(breweriesData, imageURL)
-  })
+  // fetch('https://api.unsplash.com/photos/random?query=beer', {
+  //   headers: {
+  //     Authorization: 'Client-ID 06194b76ffdc277924c266ccd8b1641a1af74d466ff1244defb5df9769987f03'
+  //   }
+  // })
+  // .then(r => r.json())
+  // .then(data => {
+  //   console.log(data)
+  //   imageURL = data.urls.small
+    
+  // })
+  createCard(breweriesData, 'https://images.unsplash.com/photo-1504502350688-00f5d59bbdeb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY1MzYyfQ') 
 }
 
 
@@ -83,8 +84,7 @@ const getUnsplash = (breweriesData) => {
 ***************/
 
 const createCard = (data, url) => {
-  let newcard = document.createElement("div")
-  newcard.innerHTML = `
+  document.getElementById("cards").innerHTML = `
   <div class="col s12 m4">
     <div class="card">
       <div class="card-image">
@@ -98,8 +98,8 @@ const createCard = (data, url) => {
       </div>
     </div>
   </div>
+  ${document.getElementById("cards").innerHTML}
   ` //Need to check parameters later
-  document.getElementById("cards").append(newcard)
 }
 
 const getGeoLocation = () => {
