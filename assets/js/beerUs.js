@@ -1,17 +1,21 @@
 // javaScript for beerUs page
 
 // going to call giphy api to switch random drinking giphs.
-document.addEventListener('click', e => {
-  if (e.target.className === 'responsive-img') {
 
-    fetch('http://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
-      .then(r => r.json())
-      .then(gifs => {
-        document.getElementById(e.target.id).src = gifs.data.images.original.url
-      })
-      .catch(e => console.log(e))
-  }
-})
+const swap = _ => {
+  document.addEventListener('click', e => {
+    if (e.target.className === 'responsive-img') {
+
+      fetch('http://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
+        .then(r => r.json())
+        .then(gifs => {
+          document.getElementById(e.target.id).src = gifs.data.images.original.url
+        })
+        .catch(e => console.log(e))
+    }
+  })
+}
+swap()
 
 // calls a random joke
 const jokeGenerator = setInterval(() => {
