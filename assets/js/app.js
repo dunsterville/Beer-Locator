@@ -66,7 +66,7 @@ const getCity = (latitude, longitude) => {
 const getUnsplash = (breweriesData) => {
   fetch('https://api.unsplash.com/photos/random?query=beer', {
     headers: {
-      Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
+      Authorization: 'Client-ID 06194b76ffdc277924c266ccd8b1641a1af74d466ff1244defb5df9769987f03'
     }
   })
   .then(r => r.json())
@@ -86,7 +86,7 @@ const createCard = (data, url) => {
   let newcard = document.createElement("div")
   newcard.innerHTML = `
   <div class="col s12 m4">
-    <div class="card">
+    <div class="card animated rotateInUpRight">
       <div class="card-image">
         <img src="${url}" class="responsive-img">
       </div>
