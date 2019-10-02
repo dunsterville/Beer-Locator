@@ -141,5 +141,24 @@ $(document).ready(function(){ //When the document's loaded, it'll be ready for m
 })
 
 
+/***************
+* Event Listener
+***************/
+
+document.getElementById('searchBreweries').addEventListener('submit', e => {
+  e.preventDefault()
+  getBreweries(document.getElementById('search').value)
+})
+
+document.getElementById('search').addEventListener('click', () => {
+  document.getElementById('search').select()
+})
+
+document.getElementById('clearSearch').addEventListener('click', () => {
+  document.getElementById('search').value = ''
+})
+
+
+
 getGeoLocation()
 
