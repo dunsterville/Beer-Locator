@@ -103,7 +103,11 @@ const createCard = (data, url) => {
 
 const getGeoLocation = () => {
   if (navigator.geolocation) {
+    if (sessionStorage.getItem('longitude')) { //runs getCity if longitude exists in sessionstorage
+      getCity(sessionStorage.getItem('latitude'), sessionStorage.getItem('longitude'))
+    } else {  //asks for location iff sessionstorage lacks longitude
     navigator.geolocation.getCurrentPosition(grabLocation, locationError)
+    }
   } else { 
     // Geolocation not supported
     errorMessage = 'Geolocation is not supported by this browser.'
@@ -114,6 +118,8 @@ const grabLocation = (position) => {
   // Grab position
   userLatitude = position.coords.latitude
   userLongitude = position.coords.longitude
+  sessionStorage.setItem(`latitude`,`${userLatitude}`) //Updated to store lat/long into sessionstorage
+  sessionStorage.setItem(`longitude`,`${userLongitude}`)
   getCity(userLatitude, userLongitude)
 }
 
