@@ -86,7 +86,7 @@ const getUnsplash = (breweriesData) => {
 const createCard = (data, url) => {
   document.getElementById("cards").innerHTML = `
   <div class="col s12 m4">
-    <div class="card">
+    <div class="card animated rotateInUpRight">
       <div class="card-image">
         <img src="${url}" class="responsive-img">
       </div>
