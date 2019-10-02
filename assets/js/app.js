@@ -63,7 +63,7 @@ const getCity = (latitude, longitude) => {
 
 
 const getUnsplash = (breweriesData) => {
-  fetch('https://api.unsplash.com/search/photos?query=beer&per_page=1', {
+  fetch('https://api.unsplash.com/photos/random?query=beer', {
     headers: {
       Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
     }
@@ -71,7 +71,7 @@ const getUnsplash = (breweriesData) => {
   .then(r => r.json())
   .then(data => {
     console.log(data)
-    imageURL = data.results[0].urls.full
+    imageURL = data.urls.small
     createCard(breweriesData, imageURL)
   })
 }
