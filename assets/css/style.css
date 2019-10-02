@@ -14,3 +14,8 @@
   font-weight: bold;
   color: #388E3C
 }
+
+/*About Paralax */
+    .parallax-container {
+      height: 375px;
+    }
