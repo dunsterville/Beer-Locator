@@ -25,6 +25,11 @@
   color: white;
 }
 
+/*About Paralax */
+    .parallax-container {
+      height: 375px;
+    }
+    
 .joke {
   text-align: center
 }
