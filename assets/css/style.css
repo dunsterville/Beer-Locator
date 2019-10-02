@@ -8,11 +8,21 @@
   width: 200px;
   height: 400px;
   text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .intro {
   font-weight: bold;
-  color: #388E3C
+  color:#388E3C;
+  background-color:white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.card-content {
+  background-color: #388E3C;
+  color: white;
 }
 
 .joke {
@@ -29,7 +39,6 @@
   color:  red;
 
 }
-
 /* Footer Padding fix */
 .page-footer {
   padding-top: 0px;
