@@ -65,6 +65,11 @@ p {
   text-align: center;
 }
 
+.bold-center {
+  font-weight: bold;
+  text-align: center;
+}
+
 /* Input */
 #search {
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
