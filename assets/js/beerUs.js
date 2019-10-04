@@ -4,7 +4,10 @@
 
 const swap = _ => {
   document.addEventListener('click', e => {
+
     if (e.target.className === 'responsive-img') {
+      loadSound()
+      playSound()
       const originalPix = e.target.src
       fetch('https://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
         .then(r => r.json())
@@ -12,7 +15,7 @@ const swap = _ => {
           document.getElementById(e.target.id).src = gifs.data.images.original.url
           setTimeout(function () {
             document.getElementById(e.target.id).src = originalPix
-          }, 3000)
+          }, 5000)
         })
         .catch(e => console.log(e))
     }
@@ -36,3 +39,11 @@ const randomJoke = _ => {
     })
 }
 randomJoke()
+
+// sound function when user clicks image from createjs.com
+var soundID = 'beer'
+
+const loadSound = _ => createjs.Sound.registerSound('./assets/images/beer.mp3', soundID)
+
+
+let playSound = _ =>playSound createjs.Sound.play(soundID)
