@@ -61,6 +61,11 @@ p {
   text-align: center;
 }
 
+.bold-center {
+  font-weight: bold;
+  text-align: center;
+}
+
 /*About Paralax */
     .parallax-container {
       height: 450px;
