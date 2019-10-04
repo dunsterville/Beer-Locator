@@ -45,9 +45,9 @@ var soundID = 'beer'
 
 const loadSound = _ => createjs.Sound.registerSound('./assets/images/beer.mp3', soundID)
 
+let playSound = _ => createjs.Sound.play(soundID)
 
-let playSound = _ =>playSound createjs.Sound.play(soundID)
-//David's adding logic for # of clicks on each person's picture, stored for Donate page
+// David's adding logic for # of clicks on each person's picture, stored for Donate page
 if (!(localStorage.getItem('cheersCalvin'))){
   localStorage.setItem('cheersCalvin', 0)
 }
