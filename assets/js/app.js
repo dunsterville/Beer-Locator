@@ -6,7 +6,8 @@
 // geoLocation variables
 let userLatitude,
   userLongitude,
-  errorMessage
+  errorMessage,
+  city
  
 
 
@@ -14,10 +15,16 @@ let userLatitude,
 * Fetch Requests
 ***************/
 
-const getBreweries = (cityname) => {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityname}`)
+const getBreweries = (cityName) => {
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${cityName}`)
   .then(r => r.json())
-  .then(data => { 
+  .then(data => {
+    city = cityName
+    let cityDiv = document.createElement('div')
+    cityDiv.id = city
+    cityDiv.className = 'row'
+    cityDiv.innerHTML = `<h3>Breweries in: ${city}</h3>`
+    document.getElementById('cards').prepend(cityDiv)
     // For each item in data array
     data.forEach((element, i) => {
       let imageURL
@@ -64,17 +71,17 @@ const getCity = (latitude, longitude) => {
 
 
 const getUnsplash = (breweriesData) => {
-  // fetch('https://api.unsplash.com/photos/random?query=beer', {
+  // fetch('https://api.unsplash.com/photos/random?query=beer&orientation=landscape', {
   //   headers: {
-  //     Authorization: 'Client-ID 06194b76ffdc277924c266ccd8b1641a1af74d466ff1244defb5df9769987f03'
+  //     Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
   //   }
   // })
   // .then(r => r.json())
   // .then(data => {
   //   console.log(data)
-  //   imageURL = data.urls.small
-    
-  // })
+  //   let image = data.urls.small
+  //   createCard(breweriesData, image)
+  //})
   createCard(breweriesData, 'https://images.unsplash.com/photo-1504502350688-00f5d59bbdeb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY1MzYyfQ') 
 }
 
@@ -84,8 +91,9 @@ const getUnsplash = (breweriesData) => {
 ***************/
 
 const createCard = (data, url) => {
-  document.getElementById("cards").innerHTML = `
-  <div class="col s12 m4">
+  let card = document.createElement('div')
+  card.className = 'col s12 m6 xl4'
+  card.innerHTML = `
     <div class="card animated rotateInUpRight">
       <div class="card-image">
         <img src="${url}" class="responsive-img">
@@ -97,9 +105,8 @@ const createCard = (data, url) => {
         <a href="${data.website_url}">${data.website_url}</a>
       </div>
     </div>
-  </div>
-  ${document.getElementById("cards").innerHTML}
-  ` //Need to check parameters later
+  `
+  document.getElementById(city).append(card)
 }
 
 const getGeoLocation = () => {
