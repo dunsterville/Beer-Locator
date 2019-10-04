@@ -6,7 +6,7 @@ const swap = _ => {
   document.addEventListener('click', e => {
     if (e.target.className === 'responsive-img') {
       const originalPix = e.target.src
-      fetch('http://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
+      fetch('https://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
         .then(r => r.json())
         .then(gifs => {
           document.getElementById(e.target.id).src = gifs.data.images.original.url
@@ -23,7 +23,7 @@ swap()
 // calls a random joke
 const jokeGenerator = setInterval(() => {
   randomJoke()
-}, 10000)
+}, 15000)
 
 const randomJoke = _ => {
   fetch('https://official-joke-api.appspot.com/random_joke')
