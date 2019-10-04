@@ -1,3 +1,23 @@
+.brand-logo {
+  font-family: 'Pacifico', cursive;
+}
+
+hr {
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+
+hr:after {
+  background: #fff;
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}
+
 
 /*beerUs.html style */
 h6 {
@@ -27,6 +47,19 @@ h6 {
   background-color: #388E3C;
   color: white;
   height: 110px;
+}
+
+/*About Style*/
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 80px;
+
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  text-align: center;
 }
 
 /*About Paralax */
