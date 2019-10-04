@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Beer Us</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <!-- Materialize Stuff -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+      .tips {
+       line-height: 30%; 
+      }
+      img {
+        margin: 10px;
+      }
+    </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="green darken-2">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Beer Me</a>
+      <a href="#" class="sidenav-trigger" data-target="mobile-links"> <!--Responsible for toggling menu-->
+        <i class="material-icons">menu</i>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./beerUs.html">Drink with us</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Responsive portion of Navbar -->
+  <ul class="sidenav" id="mobile-links"> <!--Responsive Navbar Menu-->
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./beerUs.html">Drink With Us</a></li>
+    <li><a href="./about.html">About</a></li>
+  </ul>
+  
+  <div class="container">
+    <div class="row">
+      <h5>Tip your friendly neighborhood developers</h5>
+      <p>This app was created by four humble humans with the quality of our users' drinking experiences in mind. We believe that our goals of providing brewery info, genuine company, and amusement have been reached (to some degree); it would almost be presumptuous if any of our dear users were to disagree with this sentiment.</p>
+      <p>With that said, it turns out that coding bootcamp at UC Irvine is not an inexpensive endeavor. We would be incredibly appreciative of any incoming tips, as you enjoy your brews and our company; after all, we did virtually clink glasses together numerous times, didn't we?</p>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <br>
+        <span id = "tipCalvin">You drank with Calvin 0 times.</span>
+        <p>Perhaps tip him on Venmo: @TheCalvinm</p>
+        <img src="./assets/images/calvinpix.jpg" alt="Calvin" style="width: 200px">
+      </div>
+      <div class="col s12 m6">
+          <br>
+        <span id = "tipDavid">You drank with David 0 times.</span>
+        <p>Perhaps tip him on Venmo: @David-Wu-15</p>
+        <img src="./assets/images/davidpix.jpg" alt="David" style="width: 200px">
+      </div>
+      <div class="col s12 m6">
+          <br>
+        <span id = "tipPaul">You drank with Paul 0 times.</span>
+        <p>Perhaps tip him on Venmo: @jungjeezy</p>
+        <img src="./assets/images/paulpix.jpg" alt="Paul" style="width: 200px">
+      </div>  
+      <div class="col s12 m6">
+          <br>
+        <span id = "tipMichael">You drank with Michael 0 times.</span>
+        <p>Perhaps tip him on Venmo: @Dunsterville</p>
+        <img src="./assets/images/michaelpix.png" alt="Michael" style="width: 200px">
+      </div>  
+    </div>
+  </div>
+
+  <!-- Footer Stuff -->
+  <footer class="page-footer green darken-1" style="position:fixed;bottom:0;left:0;width:100%;">
+    <div class="container">
+      © 2019 Copyright
+      <a class="grey-text text-lighten-4 right" href="./Donate.html">Donate</a>
+    </div>
+  </footer>
+
+  <!-- JQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+  <!-- Materialize CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){ //navbar logic
+    $('.sidenav').sidenav()
+    })
+  </script>
+  <script> //need to update # of cheers for each of us
+    if (localStorage.getItem('cheersCalvin')){
+      document.getElementById("tipCalvin").textContent = `You drank with Calvin ${localStorage.getItem('cheersCalvin')} times.`
+    }
+    if (localStorage.getItem('cheersDavid')){
+      document.getElementById("tipDavid").textContent = `You drank with David ${localStorage.getItem('cheersDavid')} times.`
+    }
+    if (localStorage.getItem('cheersPaul')){
+      document.getElementById("tipPaul").textContent = `You drank with Paul ${localStorage.getItem('cheersPaul')} times.`
+    }
+    if (localStorage.getItem('cheersMichael')){
+      document.getElementById("tipMichael").textContent = `You drank with Michael ${localStorage.getItem('cheersMichael')} times.`
+    }
+  </script>
+</body>
+</html>
