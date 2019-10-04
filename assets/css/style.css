@@ -65,24 +65,6 @@ p {
   text-align: center;
 }
 
-.card .card-image {
-  height: 200px;
-}
-
-.card .card-content .card-title {
-  font-size: 19px;
-  line-height: 1.4;
-}
-
-.card-content a {
-  color: #fff;
-  width: 100%;
-  display: block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 /* Input */
 #search {
   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
