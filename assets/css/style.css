@@ -46,6 +46,7 @@ h6 {
 .card-content {
   background-color: #388E3C;
   color: white;
+  height: 110px;
 }
 
 /*About Style*/
