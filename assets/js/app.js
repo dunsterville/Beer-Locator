@@ -102,7 +102,7 @@ const createCard = (data, url) => {
         <span class="card-title">${data.name}</span>
         <p>Address: ${data.street}</p>
         <p>Phone: ${data.phone}</p>
-        <a href="${data.website_url}">${data.website_url}</a>
+        <a target="_blank" href="${data.website_url}">${data.website_url}</a>
       </div>
     </div>
   `
@@ -149,6 +149,42 @@ const locationError = (error) => {
   console.log(errorMessage)
 }
 
+// Google Maps
+let placeSearch, 
+  autocomplete
+
+const componentForm = {
+  street_number: 'long_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'long_name',
+  country: 'long_name',
+  postal_code: 'long_name'
+}
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /* @type {!HTMLInputElement} */(document.getElementById('search')),
+      {types: ['(cities)']})
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', stripToCity)
+}
+
+const stripToCity = () => {
+  // Get the place details from the autocomplete object.
+  let place = autocomplete.getPlace()
+
+  // Remove everything but city
+  document.getElementById('search').value = place.address_components[0][componentForm[place.address_components[0].types[0]]]
+  // Run getBreweries
+  getBreweries(document.getElementById('search').value)
+}
+
+
 //navbar functionality
 $(document).ready(function(){ //When the document's loaded, it'll be ready for menu icon click
     $('.sidenav').sidenav()
@@ -170,6 +206,10 @@ document.getElementById('search').addEventListener('click', () => {
 
 document.getElementById('clearSearch').addEventListener('click', () => {
   document.getElementById('search').value = ''
+})
+
+document.getElementById('search').addEventListener('keypress', e => {
+  if ( e.which == 13 ) e.preventDefault();
 })
 
 
