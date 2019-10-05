@@ -8,7 +8,7 @@ const swap = _ => {
     if (e.target.className === 'responsive-img') {
       loadSound()
       playSound()
-      const originalPix = e.target.src
+      const originalPix = e.target.dataset.url
       fetch('https://api.giphy.com/v1/gifs/random?api_key=v0XH9p1RzYylQrnvVVgzOOhUSb88UqeQ&tag=drinking-cheers')
         .then(r => r.json())
         .then(gifs => {

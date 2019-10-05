@@ -7,7 +7,9 @@
 let userLatitude,
   userLongitude,
   errorMessage,
-  city
+  city,
+  state,
+  zip
  
 
 
@@ -22,8 +24,8 @@ const getBreweries = (cityName) => {
     city = cityName
     let cityDiv = document.createElement('div')
     cityDiv.id = city
-    cityDiv.className = 'row'
-    cityDiv.innerHTML = `<h3>Breweries in: ${city}</h3>`
+    cityDiv.className = 'row city'
+    cityDiv.innerHTML = `<h4>Breweries located near ${city}</h4>`
     document.getElementById('cards').prepend(cityDiv)
     // For each item in data array
     data.forEach((element, i) => {
@@ -63,6 +65,10 @@ const getCity = (latitude, longitude) => {
   .then(r => r.json())
   .then(data => {
     console.log (data.results[0].components.city)
+    // Set variables
+    city = data.results[0].components.city
+    state = data.results[0].components.state_code
+    zip = data.results[0].components.postcode
     // Get Breweries
     getBreweries(data.results[0].components.city)
   })
@@ -100,9 +106,9 @@ const createCard = (data, url) => {
       </div>
       <div class="card-content">
         <span class="card-title">${data.name}</span>
-        <p>Address: ${data.street}</p>
-        <p>Phone: ${data.phone}</p>
-        <a target="_blank" href="${data.website_url}">${data.website_url}</a>
+        <p>Address: <a href="https://www.google.com/maps/place/${data.street},+${city},+${state}+${zip}" target="_blank">${data.street}</a></p>
+        <p>Phone: <a href="tel:${data.phone}">${data.phone}</a></p>
+        <a class="website" target="_blank" href="${data.website_url}">${data.website_url}</a>
       </div>
     </div>
   `
