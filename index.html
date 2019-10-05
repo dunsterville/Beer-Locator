@@ -68,16 +68,23 @@
     <div class="row">
       <h5>Which city are we headed to?</h5>
     </div>
-    <div class="nav-wrapper row"> <!--Searchbar-->
+    <div class="nav-wrapper row"> 
+      <!--Searchbar-->
       <form id="searchBreweries">
         <div class="input-field">
           <input id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" id="clearSearch">close</i> <!--Currently doesn't successfully clear searchbar-->
+          <i class="material-icons" id="clearSearch">close</i>
         </div>
+        <input type="hidden" name="street_number">
+        <input type="hidden" name="route">
+        <input type="hidden" name="locality">
+        <input type="hidden" name="administrative_area_level_1">
+        <input type="hidden" name="country">
+        <input type="hidden" name="postal_code">
       </form>
     </div>
-    <div id="cards" class="row"> 
+    <div id="cards" class="row">
       <!--Cards go here-->
     </div>
   </div>
@@ -95,5 +102,7 @@
   <!-- Materialize CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./assets/js/app.js"></script>
+  <!-- Google Maps API-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKBRxX_1w7i9i0HrnsDEli7ClKoST_7BY&libraries=places&callback=initAutocomplete" async defer></script>
   
 </body>
