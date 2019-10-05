@@ -21,7 +21,7 @@ hr:after {
 
 /*beerUs.html style */
 h6 {
-  line-height: 90%;
+  line-height: 100%;
 }
 
 .card .card-image img {
@@ -44,12 +44,19 @@ h6 {
   background-color:white;
   margin-top: 5px;
   margin-bottom: 10px;
+  font-size: 17px;
+}
+.favDrink {
+  font-size: 17px;
 }
 
 .card-content {
   background-color: #388E3C;
   color: white;
   height: 110px;
+}
+.card.small .card-image {
+  max-height: 100%;
 }
 
 /* Input */
