@@ -13,7 +13,7 @@
     <!-- Materialize Stuff -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <style>
 
@@ -49,6 +49,10 @@
     h4 {
       padding: 0 .75rem;
     }
+
+    h4, h5 {
+      color: #333;
+    }
   
   </style>
 </head>
@@ -56,7 +60,7 @@
 <!-- Navbar -->
   <nav class="green darken-2">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Beer Me</a>
+      <a href="#" class="brand-logo">Beer Locator</a>
       <a href="#" class="sidenav-trigger" data-target="mobile-links"> <!--Responsible for toggling menu-->
         <i class="material-icons">menu</i>
       </a>
@@ -107,6 +111,12 @@
         <a class="grey-text text-lighten-4 right" href="./Donate.html">Donate</a>
       </div>
   </footer>
+
+  <div class="overlay" id="overlay">
+    <div>
+      <p>Enable Location to search breweries near you</p>
+    </div>
+  </div>
 
   <!-- JQuery CDN -->
   <script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
