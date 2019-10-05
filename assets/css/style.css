@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
 .brand-logo {
   font-family: 'Pacifico', cursive;
 }
@@ -18,15 +22,40 @@ hr:after {
   top: -13px;
 }
 
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+
+.overlay div {
+  background: #282a2f;
+  color: #cecdcd;
+  width: 280px;
+  margin: 133px 107px;
+  border-radius: 4px;
+  border: solid 1px black;
+  padding: 5px 20px;
+}
+
 
 /*beerUs.html style */
 h6 {
-  line-height: 90%;
+  line-height: 100%;
 }
 
 .card .card-image img {
   width: 100%;
   height: 100%
+}
+/* only for beerUs images */
+.card .card-image.giphy img {
+  width: 100%;
+  height: 210px;
 }
 
 .small.card{
@@ -44,30 +73,23 @@ h6 {
   background-color:white;
   margin-top: 5px;
   margin-bottom: 10px;
+  font-size: 17px;
+}
+.favDrink {
+  font-size: 17px;
 }
 
 .card-content {
   background-color: #388E3C;
   color: white;
-  height: 110px;
+  height: 143px;
+}
+.card.small .card-image {
+  max-height: 100%;
 }
 
-/*About Style*/
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 80px;
-
-}
-
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  text-align: center;
-}
-
-.bold-center {
-  font-weight: bold;
-  text-align: center;
+.city {
+  margin-top: 20px;
 }
 
 /* Input */
@@ -76,6 +98,7 @@ p {
   padding: 12px 44px;
   box-sizing: border-box;
   width: 99%;
+  margin-bottom: 30px;
 }
 
 .input-field input[type=search]+.label-icon {

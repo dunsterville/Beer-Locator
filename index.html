@@ -13,7 +13,7 @@
     <!-- Materialize Stuff -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <style>
 
@@ -30,13 +30,28 @@
       line-height: 1.4;
     }
 
-    .card-content a {
+    a {
       color: #fff;
+    }
+
+    .card-content a.website {
       width: 100%;
       display: block;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    h5 {
+      margin-top: 50px;
+    }
+
+    h4 {
+      padding: 0 .75rem;
+    }
+
+    h4, h5 {
+      color: #333;
     }
   
   </style>
@@ -45,7 +60,7 @@
 <!-- Navbar -->
   <nav class="green darken-2">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">Beer Me</a>
+      <a href="#" class="brand-logo">Beer Locator</a>
       <a href="#" class="sidenav-trigger" data-target="mobile-links"> <!--Responsible for toggling menu-->
         <i class="material-icons">menu</i>
       </a>
@@ -68,16 +83,23 @@
     <div class="row">
       <h5>Which city are we headed to?</h5>
     </div>
-    <div class="nav-wrapper row"> <!--Searchbar-->
+    <div class="nav-wrapper row"> 
+      <!--Searchbar-->
       <form id="searchBreweries">
         <div class="input-field">
           <input id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" id="clearSearch">close</i> <!--Currently doesn't successfully clear searchbar-->
+          <i class="material-icons" id="clearSearch">close</i>
         </div>
+        <input type="hidden" name="street_number">
+        <input type="hidden" name="route">
+        <input type="hidden" name="locality">
+        <input type="hidden" name="administrative_area_level_1">
+        <input type="hidden" name="country">
+        <input type="hidden" name="postal_code">
       </form>
     </div>
-    <div id="cards" class="row"> 
+    <div id="cards" class="row">
       <!--Cards go here-->
     </div>
   </div>
@@ -85,15 +107,23 @@
 <!-- Footer Stuff -->
   <footer class="page-footer green darken-1" style="position:fixed;bottom:0;left:0;width:100%;">
       <div class="container">
-        © 2019 Copyright
+        © 2019 A A U A A U E H
         <a class="grey-text text-lighten-4 right" href="./Donate.html">Donate</a>
       </div>
   </footer>
+
+  <div class="overlay" id="overlay">
+    <div>
+      <p>Enable Location to search breweries near you</p>
+    </div>
+  </div>
 
   <!-- JQuery CDN -->
   <script  src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"></script>
   <!-- Materialize CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./assets/js/app.js"></script>
+  <!-- Google Maps API-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKBRxX_1w7i9i0HrnsDEli7ClKoST_7BY&libraries=places&callback=initAutocomplete" async defer></script>
   
 </body>

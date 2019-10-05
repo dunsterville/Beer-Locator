@@ -7,7 +7,9 @@
 let userLatitude,
   userLongitude,
   errorMessage,
-  city
+  city,
+  state,
+  zip
  
 
 
@@ -22,8 +24,8 @@ const getBreweries = (cityName) => {
     city = cityName
     let cityDiv = document.createElement('div')
     cityDiv.id = city
-    cityDiv.className = 'row'
-    cityDiv.innerHTML = `<h3>Breweries in: ${city}</h3>`
+    cityDiv.className = 'row city'
+    cityDiv.innerHTML = `<h4>Breweries located near ${city}</h4>`
     document.getElementById('cards').prepend(cityDiv)
     // For each item in data array
     data.forEach((element, i) => {
@@ -63,6 +65,10 @@ const getCity = (latitude, longitude) => {
   .then(r => r.json())
   .then(data => {
     console.log (data.results[0].components.city)
+    // Set variables
+    city = data.results[0].components.city
+    state = data.results[0].components.state_code
+    zip = data.results[0].components.postcode
     // Get Breweries
     getBreweries(data.results[0].components.city)
   })
@@ -100,9 +106,9 @@ const createCard = (data, url) => {
       </div>
       <div class="card-content">
         <span class="card-title">${data.name}</span>
-        <p>Address: ${data.street}</p>
-        <p>Phone: ${data.phone}</p>
-        <a href="${data.website_url}">${data.website_url}</a>
+        <p>Address: <a href="https://www.google.com/maps/place/${data.street},+${city},+${state}+${zip}" target="_blank">${data.street}</a></p>
+        <p>Phone: <a href="tel:${data.phone}">${data.phone}</a></p>
+        <a class="website" target="_blank" href="${data.website_url}">${data.website_url}</a>
       </div>
     </div>
   `
@@ -113,8 +119,9 @@ const getGeoLocation = () => {
   if (navigator.geolocation) {
     if (sessionStorage.getItem('longitude')) { //runs getCity if longitude exists in sessionstorage
       getCity(sessionStorage.getItem('latitude'), sessionStorage.getItem('longitude'))
-    } else {  //asks for location iff sessionstorage lacks longitude
-    navigator.geolocation.getCurrentPosition(grabLocation, locationError)
+    } else {  //asks for location if sessionstorage lacks longitude
+      document.getElementById('overlay').style.display = 'block'
+      navigator.geolocation.getCurrentPosition(grabLocation, locationError)
     }
   } else { 
     // Geolocation not supported
@@ -123,6 +130,7 @@ const getGeoLocation = () => {
 }
 
 const grabLocation = (position) => {
+  document.getElementById('overlay').style.display = 'none'
   // Grab position
   userLatitude = position.coords.latitude
   userLongitude = position.coords.longitude
@@ -132,6 +140,7 @@ const grabLocation = (position) => {
 }
 
 const locationError = (error) => {
+  document.getElementById('overlay').style.display = 'none'
   switch(error.code) {
     case error.PERMISSION_DENIED:
       errorMessage = 'User denied the request for Geolocation.'
@@ -148,6 +157,42 @@ const locationError = (error) => {
   }
   console.log(errorMessage)
 }
+
+// Google Maps
+let placeSearch, 
+  autocomplete
+
+const componentForm = {
+  street_number: 'long_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'long_name',
+  country: 'long_name',
+  postal_code: 'long_name'
+}
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /* @type {!HTMLInputElement} */(document.getElementById('search')),
+      {types: ['(cities)']})
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', stripToCity)
+}
+
+const stripToCity = () => {
+  // Get the place details from the autocomplete object.
+  let place = autocomplete.getPlace()
+
+  // Remove everything but city
+  document.getElementById('search').value = place.address_components[0][componentForm[place.address_components[0].types[0]]]
+  // Run getBreweries
+  getBreweries(document.getElementById('search').value)
+}
+
 
 //navbar functionality
 $(document).ready(function(){ //When the document's loaded, it'll be ready for menu icon click
@@ -170,6 +215,10 @@ document.getElementById('search').addEventListener('click', () => {
 
 document.getElementById('clearSearch').addEventListener('click', () => {
   document.getElementById('search').value = ''
+})
+
+document.getElementById('search').addEventListener('keypress', e => {
+  if ( e.which == 13 ) e.preventDefault();
 })
 
 
