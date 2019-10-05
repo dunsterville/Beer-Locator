@@ -91,7 +91,6 @@ const getUnsplash = (breweriesData) => {
   createCard(breweriesData, 'https://images.unsplash.com/photo-1504502350688-00f5d59bbdeb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY1MzYyfQ') 
 }
 
-
 /***************
 * Functions
 ***************/
