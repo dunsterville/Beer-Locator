@@ -52,6 +52,11 @@ h6 {
   width: 100%;
   height: 100%
 }
+/* only for beerUs images */
+.card .card-image.giphy img {
+  width: 100%;
+  height: 210px;
+}
 
 .small.card{
   width: 210px;
@@ -77,7 +82,7 @@ h6 {
 .card-content {
   background-color: #388E3C;
   color: white;
-  height: 110px;
+  height: 143px;
 }
 .card.small .card-image {
   max-height: 100%;
