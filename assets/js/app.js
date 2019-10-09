@@ -77,18 +77,17 @@ const getCity = (latitude, longitude) => {
 
 
 const getUnsplash = (breweriesData) => {
-  // fetch('https://api.unsplash.com/photos/random?query=beer&orientation=landscape', {
-  //   headers: {
-  //     Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
-  //   }
-  // })
-  // .then(r => r.json())
-  // .then(data => {
-  //   console.log(data)
-  //   let image = data.urls.small
-  //   createCard(breweriesData, image)
-  //})
-  createCard(breweriesData, 'https://images.unsplash.com/photo-1504502350688-00f5d59bbdeb?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjY1MzYyfQ') 
+  fetch('https://api.unsplash.com/photos/random?query=beer&orientation=landscape', {
+    headers: {
+      Authorization: 'Client-ID 2e1202d57a36ed3893ec09b84050dfd47feca6aa3d50d47ee3f397928fc2f3a2'
+    }
+  })
+  .then(r => r.json())
+  .then(data => {
+    console.log(data)
+    let image = data.urls.small
+    createCard(breweriesData, image)
+  })
 }
 
 
