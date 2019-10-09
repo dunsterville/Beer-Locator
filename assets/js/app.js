@@ -64,7 +64,6 @@ const getCity = (latitude, longitude) => {
   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=d62fec397ede46c28c554363b73c4563`)
   .then(r => r.json())
   .then(data => {
-    console.log (data.results[0].components.city)
     // Set variables
     city = data.results[0].components.city
     state = data.results[0].components.state_code
