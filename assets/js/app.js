@@ -84,7 +84,6 @@ const getUnsplash = (breweriesData) => {
   })
   .then(r => r.json())
   .then(data => {
-    console.log(data)
     let image = data.urls.small
     createCard(breweriesData, image)
   })
