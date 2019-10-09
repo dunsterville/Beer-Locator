@@ -120,7 +120,6 @@ const getGeoLocation = () => {
     if (sessionStorage.getItem('longitude')) { //runs getCity if longitude exists in sessionstorage
       getCity(sessionStorage.getItem('latitude'), sessionStorage.getItem('longitude'))
     } else {  //asks for location if sessionstorage lacks longitude
-      document.getElementById('overlay').style.display = 'block'
       navigator.geolocation.getCurrentPosition(grabLocation, locationError)
     }
   } else { 
@@ -130,7 +129,6 @@ const getGeoLocation = () => {
 }
 
 const grabLocation = (position) => {
-  document.getElementById('overlay').style.display = 'none'
   // Grab position
   userLatitude = position.coords.latitude
   userLongitude = position.coords.longitude
@@ -140,7 +138,6 @@ const grabLocation = (position) => {
 }
 
 const locationError = (error) => {
-  document.getElementById('overlay').style.display = 'none'
   switch(error.code) {
     case error.PERMISSION_DENIED:
       errorMessage = 'User denied the request for Geolocation.'
