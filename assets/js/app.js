@@ -35,21 +35,20 @@ const getBreweries = (cityName) => {
       // If Website URL exists
       if (element.website_url) {
         // Get openGraph info
-        // fetch(`https://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
-        // .then(r => r.json())
-        // .then(data => {
-        //   // Set imageURL
-        //   imageURL = data.openGraph.image.url
-        //   // If image url doesn't exist
-        //   if (!imageURL) {
-        //     // Get an unsplash image
-        //     getUnsplash(breweriesData)
-        //   } else {
-        //     createCard(breweriesData, imageURL)
-        //   }
-        // })
-        // .catch(err => console.log(err))
-        getUnsplash(breweriesData)
+        fetch(`https://opengraph.io/api/1.0/site/${element.website_url.replace('://', '%3A%2F%2F')}?accept_lang=auto&app_id=bfb5f20f-f950-4486-9c7d-c87131eb839b`)
+        .then(r => r.json())
+        .then(data => {
+          // Set imageURL
+          imageURL = data.openGraph.image.url
+          // If image url doesn't exist
+          if (!imageURL) {
+            // Get an unsplash image
+            getUnsplash(breweriesData)
+          } else {
+            createCard(breweriesData, imageURL)
+          }
+        })
+        .catch(err => console.log(err))
       } else {
         // Get an unsplash image
         getUnsplash(breweriesData)
